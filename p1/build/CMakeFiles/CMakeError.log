@@ -1,0 +1,15 @@
+Detecting CXX [-std=c++98] compiler features failed to compile with the following output:
+Change Dir: C:/josh/sdc/CarND-Extended-Kalman-Filter-Project/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/MinGW/msys/1.0/bin/make.exe" "cmTC_a55bd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a55bd.dir/build.make CMakeFiles/cmTC_a55bd.dir/build
+make[1]: Entering directory `/c/josh/sdc/CarND-Extended-Kalman-Filter-Project/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a55bd.dir/feature_tests.cxx.obj
+C:/MinGW/bin/c++.exe    -std=c++98 -o CMakeFiles/cmTC_a55bd.dir/feature_tests.cxx.obj -c C:/josh/sdc/CarND-Extended-Kalman-Filter-Project/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_a55bd.exe
+make[1]: *** [cmTC_a55bd.exe] Error 5
+make[1]: Leaving directory `/c/josh/sdc/CarND-Extended-Kalman-Filter-Project/build/CMakeFiles/CMakeTmp'
+make: *** [cmTC_a55bd/fast] Error 2
+
+
+

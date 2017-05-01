@@ -1,88 +1,72 @@
-#include "kalman_filter.h"
-#include <math.h>
 #include <iostream>
+#include "tools.h"
+#include <math.h>
 
-#define PI 3.14159265
+#define RMSE_SIZE 4
 
-using Eigen::MatrixXd;
 using Eigen::VectorXd;
+using Eigen::MatrixXd;
+using std::vector;
 
-KalmanFilter::KalmanFilter() {
-}
+Tools::Tools() {}
 
-KalmanFilter::~KalmanFilter() {
-}
+Tools::~Tools() {}
 
-void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
-                        MatrixXd &H_in, MatrixXd &R_in, MatrixXd &Q_in) {
-  x_ = x_in;
-  P_ = P_in;
-  F_ = F_in;
-  H_ = H_in;
-  R_ = R_in;
-  Q_ = Q_in;
-}
+VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
+                              const vector<VectorXd> &ground_truth) {
 
-void KalmanFilter::Predict() {
-  //predict the state
-  x_ = F_ * x_;
-  MatrixXd Ft = F_.transpose();
-  P_ = F_ * P_ * Ft + Q_;
-}
+  VectorXd rmse(RMSE_SIZE);
+  rmse << 0,0,0,0;
 
-void KalmanFilter::Update(const VectorXd &z) {
-  //update the state with kalman filter
-  VectorXd z_pred = H_ * x_;
-  VectorXd y = z - z_pred;
-  MatrixXd Ht = H_.transpose();
-  MatrixXd S = H_ * P_ * Ht + R_;
-  MatrixXd Si = S.inverse();
-  MatrixXd PHt = P_ * Ht;
-  MatrixXd K = PHt * Si;
-
-  //new estimate
-  x_ = x_ + (K * y);
-  long x_size = x_.size();
-  MatrixXd I = MatrixXd::Identity(x_size, x_size);
-  P_ = (I - K * H_) * P_;
-}
-
-void KalmanFilter::UpdateEKF(const VectorXd &z) {
-
-  //update the state with extended kalman filter
-  float rho = sqrt(x_[0] * x_[0] + x_[1] * x_[1]);
-  float phi = atan2(x_[1], x_[0]);
-  float rho_dot;
-
-  //avoid divide by zero
-  if (fabs(rho) == 0.00001) {
-    rho_dot = 0;
-  } else {
-    rho_dot = (x_[0] * x_[2] + x_[1] * x_[3]) / rho;
+  // check estimation and ground truth
+  if(estimations.size() == 0 || estimations.size() != ground_truth.size()){
+    std::cout << "RMSE Calculation Error";
+    return rmse;
   }
 
-  VectorXd z_pred(3);
-  z_pred << rho, phi, rho_dot;
-  VectorXd y = z - z_pred;
+  else {
+    //accumulate squared residuals
+    for (int i = 0; i < estimations.size(); ++i) {
+      VectorXd residual = estimations[i] - ground_truth[i];
+      residual = residual.array() * residual.array();
+      rmse = rmse + residual;
+    }
 
-  //corner cases
-  //nomalize angles that so they fall within -pi - pi
-  if (y(1) < -M_PI) {
-    y(1) += 2 * M_PI;
-  } else if (y(1) > M_PI) {
-    y(1) -= 2 * M_PI;
+    //calculate the mean
+    rmse = rmse/estimations.size();
+    //calculate the squared root
+    rmse = rmse.array().sqrt();
   }
 
-  MatrixXd Ht = H_.transpose();
-  MatrixXd S = H_ * P_ * Ht + R_;
-  MatrixXd Si = S.inverse();
-  MatrixXd PHt = P_ * Ht;
-  MatrixXd K = PHt * Si;
+  // return RMSE
+  return rmse;
+}
 
-  //new estimate
-  x_ = x_ + (K * y);
-  long x_size = x_.size();
-  MatrixXd I = MatrixXd::Identity(x_size, x_size);
-  P_ = (I - K * H_) * P_;
+MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
+
+  MatrixXd Hj(3,4);
+  // recover state parameters
+  float px = x_state(0);
+  float py = x_state(1);
+  float vx = x_state(2);
+  float vy = x_state(3);
+
+  //avoid recalculation
+  float c1 = px*px+py*py;
+  float c2 = sqrt(c1);
+  float c3 = (c1*c2);
+
+  // check division by zero
+  if(fabs(c1) < 0.0001){
+    std::cout << "Calculate Jacobian Error - Divide by Zero" << std::endl;
+  }
+  else{
+    //compute the Jacobian matrix
+    Hj << (px/c2), (py/c2), 0, 0,
+         -(py/c1), (px/c1), 0, 0,
+          py*(vx*py - vy*px)/c3, px*(px*vy - py*vx)/c3, px/c2, py/c2;
+  }
+
+  return Hj;
 
 }

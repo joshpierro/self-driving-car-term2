@@ -221,6 +221,7 @@ int main(int argc, char* argv[]) {
 
   // compute the accuracy (RMSE)
   Tools tools;
+  cout << "" << endl;
   cout << "RMSE" << endl << tools.CalculateRMSE(estimations, ground_truth) << endl;
 
   // close files
@@ -232,6 +233,15 @@ int main(int argc, char* argv[]) {
     in_file_.close();
   }
 
-  cout << "Done!" << endl;
+  cout << "" << endl;
+  cout << "########   #######  ##    ## ########" << endl;
+  cout << "##     ## ##     ## ###   ## ## " << endl;
+  cout << "##     ## ##     ## ####  ## ##" << endl;
+  cout << "##     ## ##     ## ## ## ## ######" << endl;
+  cout << "##     ## ##     ## ##  #### ##" << endl;
+  cout << "##     ## ##     ## ##   ### ##" << endl;
+  cout << "########   #######  ##    ## ########" << endl;
+
+
   return 0;
 }

@@ -95,6 +95,16 @@ public:
    * matrix
    * @param delta_t Time between k and k+1 in s
    */
+
+  /**
+   * Generates sigma points
+   */
+  MatrixXd GenerateSigmaPoints();
+  /**
+   * Augments sigma points
+   */
+  MatrixXd AugmentSigmaPoints();
+
   void Prediction(double delta_t);
 
   /**

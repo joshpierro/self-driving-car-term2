@@ -14,24 +14,92 @@
 #include <sstream>
 #include <string>
 #include <iterator>
+#include <random>
 
 #include "particle_filter.h"
 
 using namespace std;
 
+//random number engine class that generates pseudo-random numbers
+default_random_engine generator;
+
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
-	// TODO: Set the number of particles. Initialize all particles to first position (based on estimates of 
-	//   x, y, theta and their uncertainties from GPS) and all weights to 1. 
-	// Add random Gaussian noise to each particle.
-	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
+
+	//Set the number of particles
+	num_particles = 100;
+	cout << "Initializing " << num_particles << " Particles!" << endl;
+	cout << "With Starting position of  " << x << "," << y << endl;
+	cout << "and theta of  " << theta << endl;
+
+	// set normal distributions using GPS measurement uncertainty
+	normal_distribution<double> normal_distribution_x(x, std[0]);
+	normal_distribution<double> normal_distribution_y(y, std[1]);
+	normal_distribution<double> normal_distribution_theta(theta, std[2]);
+
+	//Initialize all particles to first position, add random Gaussian noise to each particle set all weights to 1
+	for (int i = 0; i <= num_particles; i++) {
+		Particle particle;
+		particle.id = i;
+		particle.x = normal_distribution_x(generator);
+		particle.y = normal_distribution_y(generator);
+		particle.theta = normal_distribution_theta(generator);
+		particle.weight = 1;
+		particles.push_back(particle);
+	}
+
+	for (int i = 0; i <= num_particles; i++) {
+	 cout << particles[i].x << endl;
+	 cout << particles[i].y << endl;
+	 cout << particles[i].theta << endl;
+	 cout << "------------------" << endl;
+	 }
+
+	//todo assert values fall within the standard deviation
+
+	is_initialized = true;
+	cout << "Initialized!" << endl;
 
 }
 
 void ParticleFilter::prediction(double delta_t, double std_pos[], double velocity, double yaw_rate) {
-	// TODO: Add measurements to each particle and add random Gaussian noise.
-	// NOTE: When adding noise you may find std::normal_distribution and std::default_random_engine useful.
-	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
-	//  http://www.cplusplus.com/reference/random/default_random_engine/
+
+	for (int i = 0; i <= num_particles; i++) {
+
+		double  x, y, theta;
+
+		//add measurments
+		//update x, y and the yaw angle when the yaw rate is not equal to zero:
+		if (yaw_rate != 0) {
+			particles[i].x = particles[i].x + (velocity/yaw_rate) * (sin(particles[i].theta + yaw_rate*delta_t) - sin(particles[i].theta));
+			particles[i].y = particles[i].y + (velocity/yaw_rate) * (cos(particles[i].theta) - cos(particles[i].theta + (yaw_rate*delta_t)));
+			particles[i].theta += yaw_rate * delta_t;;
+		} else {
+			particles[i].x = velocity * delta_t * cos(particles[i].theta);
+			particles[i].y = velocity * delta_t * sin(particles[i].theta);
+		}
+
+
+		//add random Gaussian noise
+
+		//normal distributions for noise
+		normal_distribution<double> normal_distribution_x(0, std_pos[0]);
+		normal_distribution<double> normal_distribution_y(0, std_pos[1]);
+		normal_distribution<double> normal_distribution_theta(0, std_pos[2]);
+
+		//update particles
+		particles[i].x += normal_distribution_x(generator);
+		particles[i].y += normal_distribution_y(generator);
+		particles[i].theta += normal_distribution_theta(generator);
+
+	}
+
+	/*for (int i = 0; i <= num_particles; i++) {
+	 cout << particles[i].x << endl;
+	 cout << particles[i].y << endl;
+	 cout << particles[i].theta << endl;
+	 cout << "------------------" << endl;
+	 }*/
+
 
 }
 

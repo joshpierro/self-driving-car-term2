@@ -111,6 +111,8 @@ random
 -
 particle_filter.h
 /home/pierro/Work/udacity/self-driving-car-term2/p3/src/particle_filter.h
+map.h
+/home/pierro/Work/udacity/self-driving-car-term2/p3/src/map.h
 
 /home/pierro/Work/udacity/self-driving-car-term2/p3/src/particle_filter.h
 helper_functions.h

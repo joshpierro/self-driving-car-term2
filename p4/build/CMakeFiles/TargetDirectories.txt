@@ -1,0 +1,3 @@
+/home/pierro/Work/udacity/self-driving-car-term2/p4/build/CMakeFiles/edit_cache.dir
+/home/pierro/Work/udacity/self-driving-car-term2/p4/build/CMakeFiles/rebuild_cache.dir
+/home/pierro/Work/udacity/self-driving-car-term2/p4/build/CMakeFiles/pid.dir

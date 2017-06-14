@@ -39,7 +39,9 @@ My final parameters are as follows:
   Throttle (P=1,I=0,D=0.5);
 </pre> 
 
-The video of my car going around the track can be seen here*:
+
+The video of my car going around the track can be seen here (click image):
+ 
 <a href="https://www.youtube.com/watch?v=WG1_0_wGyKw&feature=youtu.be" target="_blank">
 <img src="https://github.com/joshpierro/self-driving-car-term2/blob/master/p4/images/p4.png"/>
 </a>

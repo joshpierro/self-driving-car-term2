@@ -18,7 +18,7 @@ The Differential component prevents overshooting and provides smoothing when cor
 ## Approach and Hyper-parameter Selection
 My approach for this project was to get it working end to end and then fine tune my hyper-parameters and methods. I first implemented the provided method stubs (Init,  UpdateError, TotalError) and got the main function working. In main, I created two PID controllers, one for controlling the steering and one for controlling the throttle. My final parameters were derived with trial and error. 
 
-For my steering controller, I started with an arbitrary and high value (1) for my p parameter. I gradually reduced this to .3 to mitigate over-steering and correcting. I also started with a value of 1 for my D parameter and I gradually raised it to 4, which decreased and smoothed out the wobbliness of the run. The I parameter had minimal impact on the simulation and I settled on .0005. 
+For my steering controller, I started with an arbitrary and high value (1) for my p parameter. I gradually reduced this to .3 to mitigate over-steering and over-correcting. I also started with a value of 1 for my D parameter and I gradually raised it to 4, which decreased and smoothed out the wobbliness of the run. The I parameter had minimal impact on the simulation and I settled on .0005. 
 
 In my throttle controller I was never able to calculate consistent and reliable values to send to the simulator through parameter tuning. So, in the end, I ended up coming up with a ham fisted solution that classified the values into buckets and those buckets were used to control the throttle. 
 

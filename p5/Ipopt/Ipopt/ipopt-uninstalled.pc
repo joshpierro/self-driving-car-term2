@@ -1,0 +1,10 @@
+prefix=/usr/local
+libdir=/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/Interfaces
+
+Name: IPOPT
+Description: Interior Point Optimizer
+URL: https://projects.coin-or.org/Ipopt
+Version: 3.12.7
+Libs: ${libdir}/libipopt.la /usr/local/lib/libcoinlapack.a /usr/local/lib/libcoinblas.a -lgfortran  -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. -lgfortran -lm -lquadmath /usr/local/lib/libcoinblas.a -lgfortran  -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. -lgfortran -lm -lquadmath -lm  -ldl
+Cflags: -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/Interfaces -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/Common -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/LinAlg -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/Algorithm -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/contrib/CGPenalty -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/contrib/LinearSolverLoader -I/home/pierro/Work/udacity/self-driving-car-term2/p5/Ipopt/Ipopt/src/Common
+Requires: coinmumps 

@@ -45,7 +45,10 @@ At each step, a bit of per-processing was performed on the car's location data (
 The purpose of latency in the model is to simulate real world driving conditions where the car does respond to commands instantly, as well as the latency between getting sensor data and processing it. This value was left at the recommended 100 ms. 
 
 ### Other Findings - Parameter Tuning - Conclusion.  
-I was pleasantly surprised to find that I could easily implement and end to end solution (where the car successfully traveled around the track) using the lecture material and by paying close attention to the MPC Q&A session. Further performance was gained by tweaking the cost functions and increasing the velocity parameter (to 200). In the end, I was able to get the car over 90 MPH! Here is a video of my final result:
+I was pleasantly surprised to find that I could easily implement and end to end solution (where the car successfully traveled around the track) using the lecture material and by paying close attention to the MPC Q&A session. Further performance was gained by tweaking the cost functions and increasing the velocity parameter (to 200). In the end, I was able to get the car over 90 MPH! 
+
+### Final Result
+Click the image below to see a video of my final result.
 
 <a href="https://youtu.be/6SooeFUN2fM" target="_blank">
 <img src="https://github.com/joshpierro/self-driving-car-term2/blob/master/p5/images/96mph.png"/>

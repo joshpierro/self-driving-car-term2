@@ -50,6 +50,6 @@ I was pleasantly surprised to find that I could easily implement and end to end 
 <a href="https://youtu.be/6SooeFUN2fM" target="_blank">
 <img src="https://github.com/joshpierro/self-driving-car-term2/blob/master/p5/images/96mph.png"/>
 </a>
+<br>
 
- 
 [1] Study of Model Predictive Control for Path-Following Autonomous Ground Vehicle Control under Crosswind Effect - https://www.hindawi.com/journals/jcse/2016/6752671/

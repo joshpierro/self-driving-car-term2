@@ -4,7 +4,7 @@ Self-Driving Car Engineer Nanodegree Program
 ---
 
 ## Background and Purpose
-This repo contains my submission for the Udacity SDC nanodegree Model Predictive Control (MPC) project. MPC is an advanced technique and optimization approach to actuate autonomous vehicles. It uses a mathematical dynamics process model to predict and optimize the future behavior of systems [1]. This implementation was built in C++ and tries to calculate the  calculate an optimal trajectory for the car simulator to follow around the track. My solution was based on the MPC lectures and was heavily influenced by the <a href='https://www.youtube.com/watch?v=bOQuhpz3YfU&feature=youtu.be'> Self-Driving Car Project Q&A | MPC Controller video</a>.
+This repo contains my submission for the Udacity SDC nanodegree Model Predictive Control (MPC) project. MPC is an advanced technique and optimization approach to actuate autonomous vehicles. It uses a mathematical dynamics process model to predict and optimize the future behavior of systems [1]. This implementation was built in C++ and tries to calculate an optimal trajectory for the car simulator to follow around the track. My solution was based on the MPC lectures and was heavily influenced by the <a href='https://www.youtube.com/watch?v=bOQuhpz3YfU&feature=youtu.be'> Self-Driving Car Project Q&A | MPC Controller video</a>.
 
 
 ###Model Description 

@@ -9,7 +9,10 @@ This repo contains my submission for the Udacity SDC nanodegree Model Predictive
 
 ### Model Description 
 This implementation uses a Kinetic model, which is a simplification of a dynamic vehicle model. It uses model state and output from each time-step to calculate the next, as well as plot a trajectory. Model inputs include: vehicle location (x,y), orientation (psi), velocity (v), cross track error (cte), error of psi, as well as acceleration (a) and steering angle (delta). Acceleration and steering angle are used as actuators to propel and guide the car. The update step employs the following equation:
+
+<br>
 <img src="https://github.com/joshpierro/self-driving-car-term2/blob/master/p5/images/update.png"/>
+<br>
 
 ### Timestep Length and Elapsed Duration Rationale
 On the suggestion of the Udacity office hours - MPC Q&A, I selected the values 10 for N and .1 for dt. This represents the number of time steps (N) and duration of a time-step (dt), and together they define the duration of time where the model can predict the trajectory. 

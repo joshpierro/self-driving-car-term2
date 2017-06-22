@@ -47,6 +47,9 @@ The purpose of latency in the model is to simulate real world driving conditions
 ### Other Findings - Parameter Tuning - Conclusion.  
 I was pleasantly surprised to find that I could easily implement and end to end solution (where the car successfully traveled around the track) using the lecture material and by paying close attention to the MPC Q&A session. Further performance was gained by tweaking the cost functions and increasing the velocity parameter (to 200). In the end, I was able to get the car over 90 MPH! Here is a video of my final result:
 
+<a href="https://youtu.be/6SooeFUN2fM" target="_blank">
+<img src="https://github.com/joshpierro/self-driving-car-term2/blob/master/p5/images/96mph.png"/>
+</a>
 
  
 [1] Study of Model Predictive Control for Path-Following Autonomous Ground Vehicle Control under Crosswind Effect - https://www.hindawi.com/journals/jcse/2016/6752671/

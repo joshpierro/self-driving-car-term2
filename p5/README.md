@@ -7,7 +7,7 @@ Self-Driving Car Engineer Nanodegree Program
 This repo contains my submission for the Udacity SDC nanodegree Model Predictive Control (MPC) project. MPC is an advanced technique and optimization approach to actuate autonomous vehicles. It uses a mathematical dynamics process model to predict and optimize the future behavior of systems [1]. This implementation was built in C++ and tries to calculate an optimal trajectory for the car simulator to follow around the track. My solution was based on the MPC lectures and was heavily influenced by the <a href='https://www.youtube.com/watch?v=bOQuhpz3YfU&feature=youtu.be'> Self-Driving Car Project Q&A | MPC Controller video</a>.
 
 
-###Model Description 
+### Model Description 
 This implementation uses a Kinetic model, which is a simplification of a dynamic vehicle model. It uses model state and output from each time-step to calculate the next, as well as plot a trajectory. Model inputs include: vehicle location (x,y), orientation (psi), velocity (v), cross track error (cte), error of psi, as well as acceleration (a) and steering angle (delta). Acceleration and steering angle are used as actuators to propel and guide the car. The update step employs the following equation:
 
 

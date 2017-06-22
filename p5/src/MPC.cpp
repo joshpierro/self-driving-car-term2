@@ -5,7 +5,6 @@
 
 using CppAD::AD;
 
-// TODO: Set the timestep length and duration
 //one second into the future
 size_t N = 10;
 double dt = .1;
@@ -78,12 +77,6 @@ public:
 
         //set up constraints
         // NOTE: In this section you'll setup the model constraints.
-
-        // Initial constraints
-        //
-        // add 1 to each of the starting indices due to cost being located at
-        // index 0 of `fg`.
-        // This bumps up the position of all the other values.
 
         //defined in quiz
         fg[1 + x_start] = vars[x_start];
@@ -173,14 +166,12 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
     // The upper and lower limits of delta are set to -25 and 25
     // degrees (values in radians).
-    // NOTE: Feel free to change this to something else.
     for (unsigned int i = delta_start; i < a_start; i++) {
         vars_lowerbound[i] = -0.436332 * Lf;
         vars_upperbound[i] = 0.436332 * Lf;
     }
 
     // Acceleration/decceleration upper and lower limits.
-    // NOTE: Feel free to change this to something else.
     for (unsigned int i = a_start; i < n_vars; i++) {
         vars_lowerbound[i] = -1.0;
         vars_upperbound[i] = 1.0;
